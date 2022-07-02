@@ -3,7 +3,7 @@
 
 module.exports = {
 	title: 'easyTDV', // Title for your website.
-	tagline: 'A Simple Python Framework for Training deploying IA model and visualize the results',
+	tagline: 'A Simple Python Framework for Training deploying AI model and visualize the results',
 	url:'https://pypi.org/project/easyTDV/',
 	//url: // Your website https URL final
 	baseUrl: '/', 
@@ -14,7 +14,7 @@ module.exports = {
 
 	// For no header links in the top nav bar -> headerLinks: [],
 	headerLinks: [{
-		doc: 'index',
+		doc: 'presentation',
 		label: 'Docs',
 	}, {
 		href: 'https://pypi.org/project/easyTDV/',

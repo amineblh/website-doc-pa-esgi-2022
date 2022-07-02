@@ -49,7 +49,7 @@ class HomeSplash extends React.Component {
 					<PromoSection>
 						<Button href="#install">Installation</Button>
 						<Button href={docUrl("start", language)}>Get Started</Button>
-						<Button href={docUrl("index", language)}>Documentation</Button>
+						<Button href={docUrl("presentation", language)}>Documentation</Button>
 					</PromoSection>
 				</div>
 			</SplashContainer>
@@ -64,54 +64,79 @@ class Index extends React.Component {
 
 		const server = `
 \`\`\`express
-##### Initialisation #####
-bucket = "test-esgi-pa-test"
-device_size = "2"
-instance_type = "t2.micro"
-input_model_type = "int"
-model_s3_key = "...."
-local_rep = "./local/ressources"
-train_script_local_path = f"{local_rep}/train_script.py"
-requirements_local_path = f"{local_rep}/requirements.txt"
-credential_file_path = "./new_user_credentials.csv"
-auth_object = Ath.UserAwsAuth(credential_file_path)
+from easyTDV import UserAwsAuth as Ath
+from easyTDV import Train as T
+from easyTDV import Deploy as D
+from easyTDV import Vizualisation as V
 
-##### Train #####
-train_object = T.Train(bucket, auth_object, train_script_local_path,
-					 requirements_local_path, instance_type, device_size)
-prep_env_response = train_object.prepare_env()
-print("[Train] creation stack...")
-create_stack_status = train_object.create_clf_stack(prep_env_response)
+def prepro_fn(input_model):
+    import numpy as np
+    age = float(input_model["age"])
+    sex = float(input_model["sex"])
+    return np.array([age, sex]).reshape(-1, 2)
 
-print("[Train] lancement ec2...")
-instance_id = train_object.lunch_train_ec2()
+if __name__ == "__main__":
+    bucket = "test-pa-esgi-02072022"
+    device_size = "2"
+    instance_type = "t2.medium"
+    model_s3_key = "domaine=model/modelPKL"
 
-print(instance_id)
-print("[Train] installation requierements...")
-install_req_status = train_object.install_requerments(instance_id)
+    local_rep = "."
+    train_script_local_path = f"{local_rep}/trainscript.py"
+    requirements_local_path = f"{local_rep}/requirements.txt"
 
-install_req_status["status"] = "Success"
-if install_req_status["status"]=="Success":
-	print("[Train] entrainement model...")
-	train_status = train_object.lunch_train_script(instance_id)
-	if train_status["status"] == "Success":
-		print("========>train finished!")
+    credential_file_path = r"C:\Users\IAM\new_user_credentials.csv"
+    auth_object = Ath.UserAwsAuth(credential_file_path)
+    auth_object.describe()
 
-train_object.delete_resources(instance_id)
+     # Partie entrainement
 
-##### deployment ##### 
-template_deployment_stack_local_path = f"{local_rep}/clf_deployment_stack.json"
-deployment_lbd_local_path = f"{local_rep}/lambda_deployment.zip"
+    print("===============================>[Train]<===============================")
+    train_object = T.Train(bucket, auth_object, train_script_local_path,
+                        requirements_local_path, instance_type, device_size)
 
-DeployObject = D.Deploy(bucket, model_s3_key, input_model_type, auth_object)
+    prep_env_response = train_object.prepare_env()
 
-print("[Deployment] prepare_env...")
-deployment_prepare_env = DeployObject.prepare_deployment()
+    create_stack_status = train_object.create_clf_stack(prep_env_response)
 
-print("[Deployment] deploy...")
-api_url = DeployObject.deploy(deployment_prepare_env)
+    instance_id = train_object.lunch_train_ec2()
 
-print(api_url)
+    install_req_status = train_object.install_requerments(instance_id)
+
+    if install_req_status["status"]=="Success":
+        train_status = train_object.lunch_train_script(instance_id)
+        if train_status["status"] == "Success":
+            print("\n========>train finished!")
+
+    train_object.delete_resources(instance_id)
+
+    # Partie Deploiement
+
+    print("===============================>[Deployment]<===============================")
+
+    workdir = "."
+
+    DeployObject = D.Deploy(bucket, model_s3_key, prepro_fn, auth_object,workdir)
+
+    print("[Deployment] prepare_env...")
+    deployment_prepare_env = DeployObject.prepare_deployment()
+
+    print("[Deployment] deploy...")
+    api_response = DeployObject.deploy(deployment_prepare_env)
+
+    print(api_response)
+
+    api_name = api_response["api_name"]
+
+    print("===============================>[Vizualisation]<===============================")
+    VizObject = V.Vizualisation(bucket, auth_object, api_name)
+
+    vizualisation_prepare_env = VizObject.prepare_env()
+
+    dashboard_name = VizObject.vizualise(vizualisation_prepare_env)
+
+    print(dashboard_name)
+
 
 \`\`\`
 		`;
@@ -180,12 +205,7 @@ print(api_url)
 					imageAlign: 'top',
 					title: 'AWS Lambda',
 				},
-				{
-					content: '',
-					image: `${baseUrl}img/DB.jfif`,
-					imageAlign: 'top',
-					title: 'Data Base',
-				},
+			
 			]}
 			</Block>
 		);
@@ -194,7 +214,7 @@ print(api_url)
 			<Block id="install">
 				{[
 					{
-						content: 'Install latest easyTDV version 1.6.6 by running the following command:\n\n`pip install easyTDV==1.6.6`',
+						content: 'Install latest easyTDV version 1.2.0 by running the following command:\n\n`pip install easyTDV==1.6.6`',
 						image: `${baseUrl}img/command-line.svg`,
 						imageAlign: 'left',
 						title: 'Installation',
@@ -207,7 +227,7 @@ print(api_url)
 			<Block background="light" id="try">
 				{[
 					{
-						content: `Train and deploy your own AI model in AWS cloud just by using few lines of code:\n\n${server}`,
+						content: `Train, Deploy and Visualize your own AI model in AWS cloud just by using few lines of code:\n\n${server}`,
 						image: `${baseUrl}img/python.jfif`,
 						imageAlign: 'right',
 						title: 'Try now!',

@@ -30,8 +30,8 @@ class Footer extends React.Component {
 					</a>
 					<div>
 						<h5>Docs</h5>
-						<a href={this.docUrl('index', this.props.language)}>
-							Index
+						<a href={this.docUrl('presentation', this.props.language)}>
+							Presentation
 						</a>
 						<a href={this.docUrl('start', this.props.language)}>
 							Get Started
@@ -48,7 +48,7 @@ class Footer extends React.Component {
 							data-count-href="/micnic/simples/stargazers"
 							data-show-count="true"
 							data-count-aria-label="# stargazers on GitHub"
-							aria-label="Star this project on GitHub">
+							aria-label="Start this project on GitHub">
 							Star
 						</a>
 					</div>
