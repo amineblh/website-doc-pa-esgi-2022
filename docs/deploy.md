@@ -7,7 +7,7 @@ sidebar_label: Deploy
 
 ## Présentation
 
-**Classe pyhton pour la création des resossources necessaires pour le deploiement du modèle entrainé**
+**Classe python pour la création des ressources necessaires pour le deploiement du modèle entrainé**
 
 ```express
 class Deploy:

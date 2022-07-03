@@ -6,7 +6,7 @@ sidebar_label: Train
 
 ## Présentation
 
-**Classe pyhton pour la création des ressources AWS via une pile CloudFormation**
+**Classe python pour la création des ressources AWS via une pile CloudFormation**
 
 ```express
 class Train:
@@ -63,7 +63,7 @@ class Train:
 ## Fonctions 
 
 ### easyTDV.Train.prepare_env()
-#### Présenatation : 
+#### Présentation : 
 * Une fonction qui charge les fichiers suivants vers S3:
     * train.py : script d'entrainement
     * requirements.txt : fichier contanant les librairies necessaires pour l'execution de <train.py>
