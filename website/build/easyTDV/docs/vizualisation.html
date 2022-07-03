@@ -62,22 +62,33 @@
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Visualization</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="présentation"></a><a href="#présentation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présentation</h2>
 <p><strong>Classe python pour la création des resossources necessaires pour la partie visualisation</strong> </p>
 <strong>Permet de créer des dashboars pour un suivi à temps réel de l'API deployée</strong></p>
-<pre><code class="hljs css language-express"><span class="hljs-symbol">class</span> Visualization:
-    def __init__(<span class="hljs-keyword">self,
-</span>                 <span class="hljs-keyword">bucket </span>: <span class="hljs-keyword">str,
-</span><span class="hljs-symbol">                 template_stack_local_path:</span> <span class="hljs-keyword">str,
-</span>                 auth_object,
-<span class="hljs-symbol">                 api_name:</span> <span class="hljs-keyword">str,
-</span>                 region = <span class="hljs-string">"us-west-1"</span>):
-        <span class="hljs-keyword">self.bucket </span>= <span class="hljs-keyword">bucket
-</span>        <span class="hljs-keyword">self.job_id </span>= generate_job_id()
-        <span class="hljs-keyword">self.template_stack_local_path </span>= template_stack_local_path
-        <span class="hljs-keyword">self.region </span>= region
-        <span class="hljs-keyword">self.access_key_id </span>= auth_object.secret_key_id
-        <span class="hljs-keyword">self.secret_access_key </span>= auth_object.secret_access_key
-        <span class="hljs-keyword">self.nomenclature_object </span>= VisualizationNomenclature(<span class="hljs-keyword">self.job_id, </span><span class="hljs-keyword">self.bucket, </span><span class="hljs-keyword">self.region)
-</span>        <span class="hljs-keyword">self.api_name </span>= api_name
+<pre><code class="hljs css language-express"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Visualization</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(<span class="hljs-keyword">self</span>,
+                 bucket : str,
+                 auth_object,
+                 <span class="hljs-symbol">api_name:</span> str,
+                 region = <span class="hljs-string">"us-west-1"</span>)</span></span>
 </code></pre>
+<h2><a class="anchor" aria-hidden="true" id="paramètres"></a><a href="#paramètres" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres</h2>
+<ul>
+<li><strong>bucket</strong> : type : str
+<ul>
+<li>Nom du bucket S3</li>
+</ul></li>
+<li><strong>auth_object</strong> : type : UserAwsAuth
+<ul>
+<li>Objet contenant les informations sur le User AWS à utiliser pour la création des ressources</li>
+</ul></li>
+<li><strong>api_name</strong> : type : str
+<ul>
+<li>Le nom de l'API déployée auparavant. Ce nom est unique (un nouveau id unique est généré à chaque exécution)</li>
+</ul></li>
+<li><strong>region</strong> : type : str
+<ul>
+<li>Le nom de la région dans laquelle sont créées les ressources AWS, pour plus d'informations sur les régions disponibles sur AWS, veuillez consulter le lien suivant : <a href="https://aws.amazon.com/fr/about-aws/global-infrastructure/regions_az/">https://aws.amazon.com/fr/about-aws/global-infrastructure/regions_az/</a></li>
+<li>Valeur par default : us-west-1&quot;</li>
+</ul></li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="ressources"></a><a href="#ressources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ressources</h2>
 <ul>
 <li>La classe Visualization crée les ressources suivantes sur le compte aws de l'utilisateur :
@@ -110,8 +121,9 @@
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="easytdvvisualizationcreate_stackprepare_env_response-invoke_mode0-1"></a><a href="#easytdvvisualizationcreate_stackprepare_env_response-invoke_mode0-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Visualization.create_stack(prepare_env_response, invoke_mode=[0, 1])</h3>
 <h4><a class="anchor" aria-hidden="true" id="présenatation--1"></a><a href="#présenatation--1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
-<pre><code class="hljs">à completer
-</code></pre>
+<ul>
+<li>Une méthode de la classe Visualization permettant de créer une pile CloudFormation pour l'automatisation de la création des ressources pour la partie Visualisazion.</li>
+</ul>
 <h4><a class="anchor" aria-hidden="true" id="paramètres-"></a><a href="#paramètres-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
 <ul>
 <li><p><strong>prepare_env_response</strong>
@@ -120,29 +132,39 @@ Correspond à l'objet renvoyé par la méthode de class prepare_env()</p>
       dict{url_s3_stack_template : str} 
   }
 </code></pre></li>
-<li><p><strong>invoke_mode</strong> :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</p>
+<li><p><strong>invoke_mode</strong> : type : int</p>
+<ul>
+<li>Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :
 <ul>
 <li>0: synchrone</li>
 <li>1: asynchrone</li>
 </ul></li>
+</ul></li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="returns--dict"></a><a href="#returns--dict" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : dict</h4>
 <ul>
-<li>mode sysnchrone:
+<li>mode synchrone:
 <ul>
-<li>stack_id : ID unique de la pile CloudFormation de visualisation</li>
-<li>stack_name : Nom unique de la pile CloudFormation de visualisation</li>
+<li>stack_id : type : str
+<ul>
+<li>ID unique de la pile CloudFormation de deploiement</li>
+</ul></li>
+<li>stack_name : type : str
+<ul>
+<li>Nom unique de la pile CloudFormation de deploiement</li>
+</ul></li>
 </ul></li>
 <li>mode asynchrone:
 <ul>
-<li>le statut de création de la pile CloudFormation de visualisation</li>
+<li>le statut de création de la pile CloudFormation de deploiement</li>
 </ul></li>
 <li>génère une exception en cas d'échec de création de la pile CloudFormation</li>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="easytdvvisualizationget_clf_stack_statusstack_name"></a><a href="#easytdvvisualizationget_clf_stack_statusstack_name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Visualization.get_clf_stack_status(stack_name)</h3>
 <h4><a class="anchor" aria-hidden="true" id="présenatation--2"></a><a href="#présenatation--2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
-<pre><code class="hljs">a completer
-</code></pre>
+<ul>
+<li>Une méthode de classe Visualization permettant d'obtenir le statut de création de la pile CloudFormation.</li>
+</ul>
 <h4><a class="anchor" aria-hidden="true" id="paramètres--1"></a><a href="#paramètres--1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
 <ul>
 <li><strong>stack_name</strong> : Nom unique de la pile CloudFormation</li>
@@ -154,8 +176,9 @@ Correspond à l'objet renvoyé par la méthode de class prepare_env()</p>
 </ul>
 <h3><a class="anchor" aria-hidden="true" id="easytdvvisualizationvizualiseprepare_env_response-invoke_mode01"></a><a href="#easytdvvisualizationvizualiseprepare_env_response-invoke_mode01" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Visualization.vizualise(prepare_env_response, invoke_mode=[0,1])</h3>
 <h4><a class="anchor" aria-hidden="true" id="présenatation--3"></a><a href="#présenatation--3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
-<pre><code class="hljs">a completer
-</code></pre>
+<ul>
+<li>Une méthode de la classe Visualization permettant de lancer la pile CloudFormation de la partie visualization.</li>
+</ul>
 <h4><a class="anchor" aria-hidden="true" id="paramètres--2"></a><a href="#paramètres--2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
 <ul>
 <li><p><strong>prepare_env_response</strong>  <br>
@@ -164,15 +187,24 @@ Correspond à l'objet renvoyé par la méthode de class prepare_env()</p>
       dict{url_s3_stack_template : str} 
   }
 </code></pre></li>
-<li><p><strong>invoke_mode</strong> :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</p>
+<li><p><strong>invoke_mode</strong> : type : int</p>
+<ul>
+<li>Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :
 <ul>
 <li>0: synchrone</li>
 <li>1: asynchrone</li>
 </ul></li>
+</ul></li>
 </ul>
 <h4><a class="anchor" aria-hidden="true" id="returns--str-1"></a><a href="#returns--str-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : str</h4>
 <ul>
-<li>Nome unique pour le dashboard de visualisation</li>
+<li>Nom unique pour le dashboard de visualisation</li>
 </ul>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/deploy"><span class="arrow-prev">← </span><span>Deploy</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#présentation">Présentation</a></li><li><a href="#ressources">Ressources</a></li><li><a href="#fonctions">Fonctions</a><ul class="toc-headings"><li><a href="#easytdvvisualizationprepare_env">easyTDV.Visualization.prepare_env()</a></li><li><a href="#easytdvvisualizationcreate_stackprepare_env_response-invoke_mode0-1">easyTDV.Visualization.create_stack(prepare_env_response, invoke_mode=[0, 1])</a></li><li><a href="#easytdvvisualizationget_clf_stack_statusstack_name">easyTDV.Visualization.get_clf_stack_status(stack_name)</a></li><li><a href="#easytdvvisualizationvizualiseprepare_env_response-invoke_mode01">easyTDV.Visualization.vizualise(prepare_env_response, invoke_mode=[0,1])</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
+<h3><a class="anchor" aria-hidden="true" id="easytdvvisualizationdelete_resources"></a><a href="#easytdvvisualizationdelete_resources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Visualization.delete_resources():</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--4"></a><a href="#présenatation--4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<ul>
+<li>Supprime la stack CloudFormation à la fin du process. Toute les ressources créées pour cette partie seront suppriméées autimatiquement.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--none"></a><a href="#returns--none" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : None</h4>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/deploy"><span class="arrow-prev">← </span><span>Deploy</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#présentation">Présentation</a></li><li><a href="#paramètres">Paramètres</a></li><li><a href="#ressources">Ressources</a></li><li><a href="#fonctions">Fonctions</a><ul class="toc-headings"><li><a href="#easytdvvisualizationprepare_env">easyTDV.Visualization.prepare_env()</a></li><li><a href="#easytdvvisualizationcreate_stackprepare_env_response-invoke_mode0-1">easyTDV.Visualization.create_stack(prepare_env_response, invoke_mode=[0, 1])</a></li><li><a href="#easytdvvisualizationget_clf_stack_statusstack_name">easyTDV.Visualization.get_clf_stack_status(stack_name)</a></li><li><a href="#easytdvvisualizationvizualiseprepare_env_response-invoke_mode01">easyTDV.Visualization.vizualise(prepare_env_response, invoke_mode=[0,1])</a></li><li><a href="#easytdvvisualizationdelete_resources">easyTDV.Visualization.delete_resources():</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
 	| Lounas HADJ ALI</section></footer></div></body></html>

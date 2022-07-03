@@ -66,10 +66,10 @@
 <pre><code class="hljs css language-express">pip <span class="hljs-keyword">install</span> easyTDV 
 </code></pre></li>
 <li>Pour installer une version spécifique
-<pre><code class="hljs css language-express"># Installez eayTDV <span class="hljs-keyword">version</span> 1.2.0 spécifiquement.
-pip install easyTDV==1.2.0 
+<pre><code class="hljs css language-express"># Installez eayTDV <span class="hljs-keyword">version</span> 1.2.5 spécifiquement.
+pip install easyTDV==1.2.5
 # pour une <span class="hljs-keyword">version</span> <span class="hljs-keyword">qui</span> <span class="hljs-keyword">n</span>'<span class="hljs-keyword">est</span> pas antérieur à <span class="hljs-keyword">la</span> <span class="hljs-keyword">version</span> 1.5.
-pip install easyTDV&gt;=1.5.0
+pip install easyTDV&gt;=1.2.0
 # pour une <span class="hljs-keyword">version</span> <span class="hljs-keyword">qui</span> <span class="hljs-keyword">n</span>'<span class="hljs-keyword">est</span> pas plus récente à <span class="hljs-keyword">la</span> <span class="hljs-keyword">version</span> 1.5.  
 pip install easyTDV&lt;=1.5.0
 </code></pre></li>
@@ -95,6 +95,12 @@ pip install easyTDV&lt;=1.5.0
 <li>Le nom du bucket sera utilisé à l'exécution.</li>
 </ul></li>
 </ul>
+<h2><a class="anchor" aria-hidden="true" id="script-dentraînement"></a><a href="#script-dentraînement" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Script d'entraînement</h2>
+<ul>
+<li>Le script d'entraînement sera lancé dans l'instance réservée à l'étape de création de la pile CloudFormation.</li>
+<li>Le dataset utilisé pour l'entraînement sera récupéré depuis S3.</li>
+<li>À la fin d'entrainement, le modèle entrainé doit être chargé vers un chemin S3 que vous devriez indiquer à l'étape de déploiement.</li>
+</ul>
 <h2><a class="anchor" aria-hidden="true" id="démarrage-rapide"></a><a href="#démarrage-rapide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Démarrage rapide</h2>
 <ul>
 <li><p><strong>Exemple pour se connecter à un compte IAM</strong></p>
@@ -107,91 +113,82 @@ pip install easyTDV&lt;=1.5.0
 <ul>
 <li>l'objet <strong>auth_object</strong> sera utilisé comme paramètre d'entré pour toutes les fonctions des classes <strong>Train</strong> et <strong>Deploy</strong></li>
 </ul></li>
-<li><p><strong>Exemple pour exécuter un script d'entrainement sur une EC2 et déployer le modèle résultant sur une API</strong></p>
-<pre><code class="hljs css language-express"><span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> UserAwsAuth <span class="hljs-keyword">as</span> Ath
-<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Train <span class="hljs-keyword">as</span> T
-<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Deploy <span class="hljs-keyword">as</span> D
-<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Vizualisation <span class="hljs-keyword">as</span> V
+<li><p><strong>Exemple d'un script d'entrainement</strong></p>
+<pre><code class="hljs css language-express"><span class="hljs-keyword">import</span> boto3, dill, logging
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">from</span> botocore.exceptions <span class="hljs-keyword">import</span> ClientError
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split
+<span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> linear_model
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prepro_fn</span><span class="hljs-params">(input_model)</span>:</span>
-    <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
-    age = float(input_model[<span class="hljs-string">"age"</span>])
-    sex = float(input_model[<span class="hljs-string">"sex"</span>])
-    <span class="hljs-keyword">return</span> np.array([age, sex]).reshape(<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>)
 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
-    bucket = <span class="hljs-string">"test-pa-esgi-02072022"</span>
-    device_size = <span class="hljs-string">"2"</span>
-    instance_type = <span class="hljs-string">"t2.medium"</span>
-    model_s3_key = <span class="hljs-string">"domaine=model/modelPKL"</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">model_to_pickle</span><span class="hljs-params">(workdir, fun)</span>:</span>
+    file_path = <span class="hljs-string">f"<span class="hljs-subst">{workdir}</span>/modelPKL"</span>
+    dill.dump(fun, open(file_path, <span class="hljs-string">'wb'</span>))
+    <span class="hljs-keyword">return</span> file_path
 
-    local_rep = <span class="hljs-string">"."</span>
-    train_script_local_path = <span class="hljs-string">f"<span class="hljs-subst">{local_rep}</span>/trainscript.py"</span>
-    requirements_local_path = <span class="hljs-string">f"<span class="hljs-subst">{local_rep}</span>/requirements.txt"</span>
 
-    credential_file_path = <span class="hljs-string">r"C:\Users\IAM\new_user_credentials.csv"</span>
-    auth_object = Ath.UserAwsAuth(credential_file_path)
-    auth_object.describe()
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_file_from_s3</span><span class="hljs-params">(bucket, s3_key)</span>:</span>
+    pkl_local_path = <span class="hljs-string">'/tmp/dataset.csv'</span>
+    s3_client = boto3.client(<span class="hljs-string">'s3'</span>)
+    <span class="hljs-keyword">try</span>:
+        s3_client.download_file(bucket, s3_key, pkl_local_path)
+    <span class="hljs-keyword">except</span> ClientError <span class="hljs-keyword">as</span> cle:
+        logging.error(<span class="hljs-string">f"impossible de recuperer le dataset depuis s3: <span class="hljs-subst">{bucket}</span>/<span class="hljs-subst">{s3_key}</span>"</span>)
+        logging.error(cle)
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"dataset_local_path"</span> : <span class="hljs-literal">None</span>,
+            <span class="hljs-string">"log"</span> : cle
+        }
+    <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"dataset_local_path"</span> : pkl_local_path,
+            <span class="hljs-string">"log"</span> : <span class="hljs-string">"recuperation dataset terminé avec succès!"</span>
+        }
 
-     <span class="hljs-comment"># Partie entrainement</span>
-
-    print(<span class="hljs-string">"===============================&gt;[Train]&lt;==============================="</span>)
-    train_object = T.Train(bucket, auth_object, train_script_local_path,
-                        requirements_local_path, instance_type, device_size)
-
-    prep_env_response = train_object.prepare_env()
-
-    create_stack_status = train_object.create_clf_stack(prep_env_response)
-
-    instance_id = train_object.lunch_train_ec2()
-
-    install_req_status = train_object.install_requerments(instance_id)
-
-    <span class="hljs-keyword">if</span> install_req_status[<span class="hljs-string">"status"</span>]==<span class="hljs-string">"Success"</span>:
-        train_status = train_object.lunch_train_script(instance_id)
-        <span class="hljs-keyword">if</span> train_status[<span class="hljs-string">"status"</span>] == <span class="hljs-string">"Success"</span>:
-            print(<span class="hljs-string">"\n========&gt;train finished!"</span>)
-
-    train_object.delete_resources(instance_id)
-
-    <span class="hljs-comment"># Partie Deploiement</span>
-
-    print(<span class="hljs-string">"===============================&gt;[Deployment]&lt;==============================="</span>)
-
-    workdir = <span class="hljs-string">"."</span>
-
-    DeployObject = D.Deploy(bucket, model_s3_key, prepro_fn, auth_object,workdir)
-
-    print(<span class="hljs-string">"[Deployment] prepare_env..."</span>)
-    deployment_prepare_env = DeployObject.prepare_deployment()
-
-    print(<span class="hljs-string">"[Deployment] deploy..."</span>)
-    api_response = DeployObject.deploy(deployment_prepare_env)
-
-    print(api_response)
-
-    api_name = api_response[<span class="hljs-string">"api_name"</span>]
-
-    print(<span class="hljs-string">"===============================&gt;[Visualization]&lt;==============================="</span>)
-    VizObject = V.Vizualisation(bucket, auth_object, api_name)
-
-    vizualisation_prepare_env = VizObject.prepare_env()
-
-    dashboard_name = VizObject.vizualise(vizualisation_prepare_env)
-
-    print(dashboard_name)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_dataset</span><span class="hljs-params">(bucket, s3_key)</span>:</span>
+    dataset_local_path_res = get_file_from_s3(bucket, s3_key)
+    dataset_local_path = dataset_local_path_res[<span class="hljs-string">"dataset_local_path"</span>]
+    <span class="hljs-keyword">if</span> dataset_local_path <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+        <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">"dateset not found!"</span>)
+    <span class="hljs-keyword">return</span> pd.read_csv(dataset_local_path, sep=<span class="hljs-string">'|'</span>)
 
 
 
+<span class="hljs-keyword">if</span> __name__==<span class="hljs-string">"__main__"</span>:
+    workdir = <span class="hljs-string">"/appli"</span>
+    bucket = <span class="hljs-string">"test-final-pas-esgi"</span>
+    s3_key_model = <span class="hljs-string">"domaine=model/modelPKL"</span>
+    s3_key_dataset = <span class="hljs-string">"domaine=dataset/test-dataset.csv"</span>
 
+    df_salaries = get_dataset(bucket, s3_key_dataset)
+
+    df_x = pd.DataFrame(df_salaries, columns=[<span class="hljs-string">'age'</span>, <span class="hljs-string">'sex'</span>, <span class="hljs-string">'secteur_activite'</span>])
+    df_y = pd.DataFrame(df_salaries, columns=[<span class="hljs-string">"salaire"</span>])
+
+    reg_model = linear_model.LinearRegression()
+    x_train, x_test, y_train, y_test = train_test_split(df_x, df_y, test_size=<span class="hljs-number">0.2</span>, random_state=<span class="hljs-number">42</span>)
+
+    reg_model.fit(x_train, y_train)
+
+    model_local_path = model_to_pickle(workdir, reg_model)
+
+    s3_client = boto3.client(<span class="hljs-string">'s3'</span>)
+
+    s3_client.upload_file(
+        model_local_path,
+        bucket,
+        s3_key_model
+    )
 </code></pre></li>
+<li><p><strong>Exemple pour exécuter un script d'entrainement sur une EC2 et déployer le modèle résultant sur une API</strong></p>
+<ul>
+<li><a href="https://colab.research.google.com/drive/1VFzskQxVlLrh-plTdjmTtlfFfE3ni4et?usp=sharing">https://colab.research.google.com/drive/1VFzskQxVlLrh-plTdjmTtlfFfE3ni4et?usp=sharing</a></li>
+</ul></li>
 </ul>
 <h2><a class="anchor" aria-hidden="true" id="documentation-boto3"></a><a href="#documentation-boto3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation boto3</h2>
 <ul>
 <li>AWS boto3 est le kit AWS SDK pour Python (Boto3) pour créer, configurer et gérer des services AWS, tels qu'Amazon Elastic Compute Cloud (Amazon EC2) et Amazon Simple Storage Service (Amazon S3). Le SDK fournit une API orientée objet ainsi qu'un accès de bas niveau aux services AWS.</li>
 <li>La documentation du package <strong>boto3</strong> détaillée est disponible sur le lien suivant : <strong><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">https://boto3.amazonaws.com/v1/documentation/api/latest/index.html</a></strong></li>
 </ul>
-<h2><a class="anchor" aria-hidden="true" id="documentation-easytdv"></a><a href="#documentation-easytdv" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation easyTDV</h2>
-<p>[WORK IN PROGRESS]</p>
-</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/presentation"><span class="arrow-prev">← </span><span>Presentation</span></a><a class="docs-next button" href="/docs/train"><span>Train</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation-à-partir-dun-terminal">Installation à partir d'un terminal:</a></li><li><a href="#utilisation-des-identifiants-de-compte-aws">Utilisation des identifiants de compte AWS</a></li><li><a href="#créaction-dun-bucket-s3-sur-aws">Créaction d'un bucket S3 sur AWS</a></li><li><a href="#démarrage-rapide">Démarrage rapide</a></li><li><a href="#documentation-boto3">Documentation boto3</a></li><li><a href="#documentation-easytdv">Documentation easyTDV</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/presentation"><span class="arrow-prev">← </span><span>Presentation</span></a><a class="docs-next button" href="/docs/train"><span>Train</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation-à-partir-dun-terminal">Installation à partir d'un terminal:</a></li><li><a href="#utilisation-des-identifiants-de-compte-aws">Utilisation des identifiants de compte AWS</a></li><li><a href="#créaction-dun-bucket-s3-sur-aws">Créaction d'un bucket S3 sur AWS</a></li><li><a href="#script-dentraînement">Script d'entraînement</a></li><li><a href="#démarrage-rapide">Démarrage rapide</a></li><li><a href="#documentation-boto3">Documentation boto3</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
 	| Lounas HADJ ALI</section></footer></div></body></html>
