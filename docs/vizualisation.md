@@ -14,19 +14,21 @@ sidebar_label: Visualization
 class Visualization:
     def __init__(self,
                  bucket : str,
-                 template_stack_local_path: str,
                  auth_object,
                  api_name: str,
-                 region = "us-west-1"):
-        self.bucket = bucket
-        self.job_id = generate_job_id()
-        self.template_stack_local_path = template_stack_local_path
-        self.region = region
-        self.access_key_id = auth_object.secret_key_id
-        self.secret_access_key = auth_object.secret_access_key
-        self.nomenclature_object = VisualizationNomenclature(self.job_id, self.bucket, self.region)
-        self.api_name = api_name
+                 region = "us-west-1")
 ```
+## Paramètres 
+* **bucket** : type : str
+    * Nom du bucket S3 
+* **auth_object** : type : UserAwsAuth
+    * Objet contenant les informations sur le User AWS à utiliser pour la création des ressources
+* **api_name** : type : str
+    * Le nom de l'API déployée auparavant. Ce nom est unique (un nouveau id unique est généré à chaque exécution)
+* **region** : type : str
+    * Le nom de la région dans laquelle sont créées les ressources AWS, pour plus d'informations sur les régions disponibles sur AWS, veuillez consulter le lien suivant : https://aws.amazon.com/fr/about-aws/global-infrastructure/regions_az/
+    * Valeur par default : us-west-1"
+
 
 ## Ressources
 * La classe Visualization crée les ressources suivantes sur le compte aws de l'utilisateur :
@@ -52,7 +54,7 @@ class Visualization:
 
 ### easyTDV.Visualization.create_stack(prepare_env_response, invoke_mode=[0, 1])
 #### Présenatation : 
-    à completer
+* Une méthode de la classe Visualization permettant de créer une pile CloudFormation pour l'automatisation de la création des ressources pour la partie Visualisazion.
 #### Paramètres : 
 * **prepare_env_response** 
     Correspond à l'objet renvoyé par la méthode de class prepare_env()
@@ -61,23 +63,25 @@ class Visualization:
             dict{url_s3_stack_template : str} 
         }
 
-* **invoke_mode** :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
-    
-    - 0: synchrone
-    - 1: asynchrone
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :    
+        - 0: synchrone
+        - 1: asynchrone
 
 
 #### Returns : dict
-* mode sysnchrone:
-    * stack_id : ID unique de la pile CloudFormation de visualisation
-    * stack_name : Nom unique de la pile CloudFormation de visualisation
-* mode asynchrone:
-    * le statut de création de la pile CloudFormation de visualisation
+* mode synchrone:
+    * stack_id : type : str 
+        * ID unique de la pile CloudFormation de deploiement
+    * stack_name : type : str  
+        * Nom unique de la pile CloudFormation de deploiement
+* mode asynchrone: 
+    * le statut de création de la pile CloudFormation de deploiement
 * génère une exception en cas d'échec de création de la pile CloudFormation   
 
 ### easyTDV.Visualization.get_clf_stack_status(stack_name)
 #### Présenatation : 
-    a completer
+* Une méthode de classe Visualization permettant d'obtenir le statut de création de la pile CloudFormation. 
 #### Paramètres : 
 * **stack_name** : Nom unique de la pile CloudFormation
 
@@ -87,7 +91,7 @@ class Visualization:
 
 ### easyTDV.Visualization.vizualise(prepare_env_response, invoke_mode=[0,1])
 #### Présenatation : 
-    a completer
+* Une méthode de la classe Visualization permettant de lancer la pile CloudFormation de la partie visualization.
 #### Paramètres : 
 * **prepare_env_response**  
     Correspond à l'objet renvoyé par la méthode de class prepare_env()
@@ -96,9 +100,16 @@ class Visualization:
             dict{url_s3_stack_template : str} 
         }
 
-* **invoke_mode** :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
-    
-    - 0: synchrone
-    - 1: asynchrone
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :    
+        - 0: synchrone
+        - 1: asynchrone
 #### Returns : str 
-* Nome unique pour le dashboard de visualisation
+* Nom unique pour le dashboard de visualisation
+
+
+### easyTDV.Visualization.delete_resources():
+#### Présenatation : 
+* Supprime la stack CloudFormation à la fin du process. Toute les ressources créées pour cette partie seront suppriméées autimatiquement.
+
+#### Returns : None

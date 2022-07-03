@@ -13,10 +13,8 @@ class Train:
     def __init__(self,
                      bucket,
                      auth_object,
-                     template_stack_local_path,
                      train_script_local_path,
                      requirements_local_path,
-                     train_lbd_local_path,
                      instance_type,
                      device_size,
                      ami = "ami-0d9858aa3c6322f73",
@@ -24,6 +22,26 @@ class Train:
                      )
 
 ```
+
+## Paramètres : 
+* **bucket** : type : str
+    * Nom du bucket S3 
+* **auth_object** : type : UserAwsAuth
+    * Objet contenant les informations sur le User AWS à utiliser pour la création des ressources
+* **train_script_local_path** : type : str 
+    * Chemin local vers le script d'entrainement
+* **requirements_local_path** : type : str
+    * Chemin local vers le fichier contenant les librairies nécessaires pour l'entrainement du modèle
+* **instance_type** : type : str
+    * Le type de l'instance EC2 à utiliser. Les types d'instances ainsi que leurs caractéristiques sont répertoriées sur le lien suivant : https://aws.amazon.com/fr/ec2/instance-types/
+* **device_size** : type : str
+    * La taille du volume EBS à rattacher à l'instance d'entrainement, pour plus dinformations sur les tailles des volumes EBS disponibles veuillez consulter le lien suivant : https://docs.aws.amazon.com/fr_fr/AWSEC2/latest/UserGuide/ebs-volume-types.html
+* **ami** : type : str
+    * Le nom de l'AMI (Image OS) à utiliser, pour plus d'informations sur les images AMIs disponibles, veuillez consulter le lien suivant : https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html 
+    * Valeur par default : "ami-0d9858aa3c6322f73"
+* **region** : type : str
+    * Le nom de la région dans laquelle sont créées les ressources AWS, pour plus d'informations sur les régions disponibles sur AWS, veuillez consulter le lien suivant : https://aws.amazon.com/fr/about-aws/global-infrastructure/regions_az/
+    * Valeur par default : us-west-1"
 
 ## Ressources
 * La classe **Train** crée les ressources suivantes sur le compte aws de l'utilisateur :
@@ -70,7 +88,7 @@ class Train:
 
 ### easyTDV.Train.create_clf_stack(prepare_env_response, invoke_mode=[0,1])
 #### Presenatation :
-    a completer
+* Une méthode de la classe Train permettant de créer une pile CloudFormation pour l'automatisation de la création des ressources pour la partie Train.
 #### Paramètres : 
 * **prepare_env_response** :
     Correspond à l'objet renvoyé par la méthode de class prepare_env()
@@ -81,7 +99,8 @@ class Train:
             "s3_requirements_key": str,
             "url_s3_stack_template": str
         }
-* **invoke_mode** :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
     
         - 0: synchrone
         - 1: asynchrone
@@ -95,21 +114,22 @@ class Train:
 
 ### easyTDV.Train.get_clf_stack_status(stack_name):
 #### Présenatation : 
-    a completer
+* Une méthode de classe Train permettant d'obtenir le statut de création de la pile CloudFormation. 
 #### Paramètres : 
-* **stack_name** :
-    Le nom de la stack CloudFormation
+* **stack_name** : type : str
+    * Le nom de la stack CloudFormation
 
-#### Returns : str : stack_name
-* Le statut en cours de la stack **<stack_name>**
+#### Returns : type : str 
+* **stack_name** Le statut en cours de la stack **<stack_name>**
 * Génère une exception en cas d'échec à l'appel <boto3.client.describe_stacks()>
 
 
 ### easyTDV.Train.lunch_train_ec2(invoke_mode=[0,1]):
 #### Présenatation : 
-    a completer
+* Une méthode de la classe Train permettant de lancer l'instance d'entraienement. Cette instance est lancée via une Lambda déployée à l'étape de préparation de l'environnement. 
 #### Paramètres : 
-* **invoke_mode** : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
     
         - 0: synchrone
         - 1: asynchrone
@@ -122,11 +142,13 @@ class Train:
 
 ### easyTDV.Train.install_requerments(instance_id, invoke_mode=[0,1]):
 #### Présenatation : 
-    a completer
+* Une méthode de la classe Train permettant d'installer les librairies nécessaires pour l'exécution du script d'entrainement du modèle.
 #### Paramètres : 
-* **instance_id** : l'id unique de la commande SSM lancée sur l'instance d'entrainement
+* **instance_id** : type : str 
+    * L'id unique de la commande SSM lancée sur l'instance d'entrainement
 
-* **invoke_mode** : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
     
         - 0: synchrone
         - 1: asynchrone
@@ -140,12 +162,13 @@ class Train:
 
 ### easyTDV.Train.lunch_train_script(instance_id, invoke_mode=[0,1]):
 #### Présenatation : 
-    Execute le script d'entrainement dans la machine d'id : <instance_id>
+* Une méthode de la classe Train permettant d'execute le script d'entrainement dans la machine d'id : <instance_id>.
 #### Paramètres : 
-* **instance_id** : l'id unique de l'instance d'entrainement
-* **invoke_mode** : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
+* **instance_id** : type : str 
+    * L'id unique de l'instance d'entrainement
+* **invoke_mode** : type : int 
+    * Correspond aux modes d'invocations de la méthode, prend les valeurs suivantes : 
     
-
         - 0: synchrone
         - 1: asynchrone
 
@@ -157,6 +180,7 @@ class Train:
 #### Présenatation : 
 * Supprime la stack CloudFormation et resilier l'instance d'entrainement à la fin du process.
 #### Paramètres : 
-* **instance_id** : l'id unique de l'instance d'entrainement
+* **instance_id** : type : str 
+    * L'id unique de l'instance d'entrainement
 
 #### Returns : None

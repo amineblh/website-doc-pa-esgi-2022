@@ -3,7 +3,7 @@ id: presentation
 title: Presentation
 sidebar_label: Presentation
 ---
-**Date**: Jul 02, 2022 **Version**: 1.2.0
+**Date**: Jul 02, 2022 **Version**: 1.2.5
 
 ## Contexte 
  
