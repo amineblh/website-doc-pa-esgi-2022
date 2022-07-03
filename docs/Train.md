@@ -66,7 +66,7 @@ class Train:
 #### Présentation : 
 * Une fonction qui charge les fichiers suivants vers S3:
     * train.py : script d'entrainement
-    * requirements.txt : fichier contanant les librairies necessaires pour l'execution de <train.py>
+    * requirements.txt : fichier contenant les librairies necessaires pour l'execution de <train.py>
     * stack_template.json : template CloudFormation pour les ressources d'entrainement
     * lbd_train.py : code source de la lambda d'entrainement
 #### Returns :
@@ -113,7 +113,7 @@ class Train:
 
 
 ### easyTDV.Train.get_clf_stack_status(stack_name):
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de classe Train permettant d'obtenir le statut de création de la pile CloudFormation. 
 #### Paramètres : 
 * **stack_name** : type : str
@@ -125,7 +125,7 @@ class Train:
 
 
 ### easyTDV.Train.lunch_train_ec2(invoke_mode=[0,1]):
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Train permettant de lancer l'instance d'entraienement. Cette instance est lancée via une Lambda déployée à l'étape de préparation de l'environnement. 
 #### Paramètres : 
 * **invoke_mode** : type : int 
@@ -141,7 +141,7 @@ class Train:
 
 
 ### easyTDV.Train.install_requerments(instance_id, invoke_mode=[0,1]):
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Train permettant d'installer les librairies nécessaires pour l'exécution du script d'entrainement du modèle.
 #### Paramètres : 
 * **instance_id** : type : str 
@@ -161,7 +161,7 @@ class Train:
 
 
 ### easyTDV.Train.lunch_train_script(instance_id, invoke_mode=[0,1]):
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Train permettant d'execute le script d'entrainement dans la machine d'id : <instance_id>.
 #### Paramètres : 
 * **instance_id** : type : str 
@@ -177,7 +177,7 @@ class Train:
 * Génère une exception en cas où l'entrainement est KO
 
 ### easyTDV.Train.delete_resources(instance_id):
-#### Présenatation : 
+#### Présentation : 
 * Supprime la stack CloudFormation et resilier l'instance d'entrainement à la fin du process.
 #### Paramètres : 
 * **instance_id** : type : str 

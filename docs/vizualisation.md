@@ -44,7 +44,7 @@ class Visualization:
 ## Fonctions 
 
 ### easyTDV.Visualization.prepare_env()
-#### Présenatation : 
+#### Présentation : 
 * Une fonction qui charge les fichiers suivants vers S3 :
     * **stack_template.json :** template CloudFormation pour les ressources de visualisation;
 
@@ -53,7 +53,7 @@ class Visualization:
 * Génère une exception en cas d'échec de chargement du fichier vers s3
 
 ### easyTDV.Visualization.create_stack(prepare_env_response, invoke_mode=[0, 1])
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Visualization permettant de créer une pile CloudFormation pour l'automatisation de la création des ressources pour la partie Visualisazion.
 #### Paramètres : 
 * **prepare_env_response** 
@@ -80,7 +80,7 @@ class Visualization:
 * génère une exception en cas d'échec de création de la pile CloudFormation   
 
 ### easyTDV.Visualization.get_clf_stack_status(stack_name)
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de classe Visualization permettant d'obtenir le statut de création de la pile CloudFormation. 
 #### Paramètres : 
 * **stack_name** : Nom unique de la pile CloudFormation
@@ -90,7 +90,7 @@ class Visualization:
 * génère une exception en cas d'échec de création de la pile CloudFormation.
 
 ### easyTDV.Visualization.vizualise(prepare_env_response, invoke_mode=[0,1])
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Visualization permettant de lancer la pile CloudFormation de la partie visualization.
 #### Paramètres : 
 * **prepare_env_response**  
@@ -109,7 +109,7 @@ class Visualization:
 
 
 ### easyTDV.Visualization.delete_resources():
-#### Présenatation : 
+#### Présentation : 
 * Supprime la stack CloudFormation à la fin du process. Toute les ressources créées pour cette partie seront suppriméées autimatiquement.
 
 #### Returns : None

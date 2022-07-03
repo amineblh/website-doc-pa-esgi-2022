@@ -55,7 +55,7 @@ class Deploy:
 ## Fonctions 
 
 ### easyTDV.Deploy.prepare_deployment()
-#### Présenatation : 
+#### Présentation : 
 * Une fonction qui charge les fichiers suivants vers S3:
     * **layer.zip :** un zip contenant le layer <dill>
     * **prepro_fn.pkl :** un pickle contetant la fonction de préprocessing pérsonnalisée fournie par l'utilsateur
@@ -78,7 +78,7 @@ class Deploy:
 
 
 ### easyTDV.Deploy.create_stack(prepare_env_response, invoke_mode=[0,1])
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Deploy permettant de créer une pile CloudFormation pour l'automatisation de la création des ressources pour la partie déploiement.
 #### Paramètres : 
 * **prepare_env_response** :
@@ -106,7 +106,7 @@ class Deploy:
 
 
 ### easyTDV.Deploy.get_clf_stack_status(stack_name)
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de classe Deploy permettant d'obtenir le statut de création de la pile CloudFormation. 
 #### Paramètres : 
 * **stack_name** : Nom unique de la pile CloudFormation
@@ -116,7 +116,7 @@ class Deploy:
 * Génère une exception en cas d'échec de création de la stack CloudFormation.
 
 ### easyTDV.Deploy.deploy(prepare_env_response, invoke_mode=[0,1])
-#### Présenatation : 
+#### Présentation : 
 * Une méthode de la classe Deploy qui permet de lancer la pile CloudFormation de la partie déploiement. 
 #### Paramètres : 
 * **prepare_env_response** : 
@@ -138,7 +138,7 @@ class Deploy:
 
 
 ### easyTDV.Deploy.delete_resources():
-#### Présenatation : 
+#### Présentation : 
 * Supprime la stack CloudFormation à la fin du process. Toute les ressources créées pour cette partie seront suppriméées autimatiquement.
 
 #### Returns : None
