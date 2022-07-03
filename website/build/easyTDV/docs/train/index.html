@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Train · easyTDV</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Présentation"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Train · easyTDV"/><meta property="og:type" content="website"/><meta property="og:url" content="https://pypi.org/project/easyTDV//"/><meta property="og:description" content="## Présentation"/><meta property="og:image" content="https://pypi.org/project/easyTDV/img/logo1.png"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo1.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-136434169-1"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'UA-136434169-1');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo2.png" alt="easyTDV"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/presentation" target="_self">Docs</a></li><li class=""><a href="https://pypi.org/project/easyTDV/" target="_self">PyPI</a></li><li class=""><a href="https://github.com/hadjali417/PA" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Class</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/presentation">Presentation</a></li><li class="navListItem"><a class="navItem" href="/docs/start">Get Started</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Reference</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Class</h4><ul><li class="navListItem navListItemActive"><a class="navItem" href="/docs/train">Train</a></li><li class="navListItem"><a class="navItem" href="/docs/deploy">Deploy</a></li><li class="navListItem"><a class="navItem" href="/docs/vizualisation">Visualization</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Train</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="présentation"></a><a href="#présentation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présentation</h2>
+<p><strong>Classe pyhton pour la création des ressources AWS via une pile CloudFormation</strong></p>
+<pre><code class="hljs css language-express"><span class="hljs-title">class Train:</span>
+    def __init__(self,
+<span class="hljs-built_in">                     bucket,</span>
+<span class="hljs-built_in">                     auth_object,</span>
+<span class="hljs-built_in">                     template_stack_local_path,</span>
+<span class="hljs-built_in">                     train_script_local_path,</span>
+<span class="hljs-built_in">                     requirements_local_path,</span>
+<span class="hljs-built_in">                     train_lbd_local_path,</span>
+<span class="hljs-built_in">                     instance_type,</span>
+<span class="hljs-built_in">                     device_size,</span>
+                     ami = <span class="hljs-string">"ami-0d9858aa3c6322f73"</span>,
+                     region = <span class="hljs-string">"us-west-1"</span>
+                     )
+
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="ressources"></a><a href="#ressources" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Ressources</h2>
+<ul>
+<li><p>La classe <strong>Train</strong> crée les ressources suivantes sur le compte aws de l'utilisateur :</p>
+<ul>
+<li>pile CloudFormation</li>
+<li>roles IAM</li>
+<li>InstanceProfil</li>
+<li>Lambda</li>
+<li>EC2</li>
+</ul></li>
+<li><p>offre plusieurs methodes de classe :</p>
+<ul>
+<li>prepare_env()</li>
+<li>create_clf_stack()</li>
+<li>get_clf_stack_status()</li>
+<li>lunch_train_ec2()</li>
+<li>install_requerments()</li>
+<li>lunch_train_script()</li>
+<li>delete_ressources()</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="fonctions"></a><a href="#fonctions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Fonctions</h2>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtrainprepare_env"></a><a href="#easytdvtrainprepare_env" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.prepare_env()</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation-"></a><a href="#présenatation-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<ul>
+<li>Une fonction qui charge les fichiers suivants vers S3:
+<ul>
+<li>train.py : script d'entrainement</li>
+<li>requirements.txt : fichier contanant les librairies necessaires pour l'execution de &lt;train.py&gt;</li>
+<li>stack_template.json : template CloudFormation pour les ressources d'entrainement</li>
+<li>lbd_train.py : code source de la lambda d'entrainement</li>
+</ul></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns-"></a><a href="#returns-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns :</h4>
+<ul>
+<li>Retroune les keys S3 des fichiers chargés vers S3 :</li>
+</ul>
+<pre><code class="hljs css language-express">    {
+        <span class="hljs-attr">"s3_lbd_key"</span>: str,
+        <span class="hljs-attr">"s3_train_script_key"</span>: str,
+        <span class="hljs-attr">"s3_requirements_key"</span>: str,
+        <span class="hljs-attr">"url_s3_stack_template"</span>: str
+    }
+</code></pre>
+<pre><code class="hljs">s3_lbd_key : chemin S3 vers le code source de lambda de deploiement.
+s3_train_script_key : chemin S3 vers le code d'entrainement du modèle.
+s3_requirements_key : chemin S3 vers les librairies nécessaires pour l'execution du script d'entrainement.  
+url_s3_stack_template : url S3 vers le template de la pile CloudFormation d'entainement. 
+</code></pre>
+<ul>
+<li>génère une exception en cas d'échec de chargement des fichiers vers s3</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtraincreate_clf_stackprepare_env_response-invoke_mode01"></a><a href="#easytdvtraincreate_clf_stackprepare_env_response-invoke_mode01" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.create_clf_stack(prepare_env_response, invoke_mode=[0,1])</h3>
+<h4><a class="anchor" aria-hidden="true" id="presenatation-"></a><a href="#presenatation-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Presenatation :</h4>
+<pre><code class="hljs">a completer
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paramètres-"></a><a href="#paramètres-" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><p><strong>prepare_env_response</strong> :
+Correspond à l'objet renvoyé par la méthode de class prepare_env()</p>
+<pre><code class="hljs">  {
+      &quot;s3_lbd_key&quot;: str,
+      &quot;s3_train_script_key&quot;: str,
+      &quot;s3_requirements_key&quot;: str,
+      &quot;url_s3_stack_template&quot;: str
+  }
+</code></pre></li>
+<li><p><strong>invoke_mode</strong> :  correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</p>
+<pre><code class="hljs">  - 0: synchrone
+  - 1: asynchrone
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--dictstack_id-stack_status"></a><a href="#returns--dictstack_id-stack_status" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : dict{stack_id, stack_status}</h4>
+<ul>
+<li><p><strong>stack_id</strong> : L'id de la stack créée pour les appels synchrones</p></li>
+<li><p><strong>stack_status</strong> : Le statut de la création de la stack pour les appels asynchrones</p></li>
+<li><p>Génère une exception en cas d'échec de création de la stack CloudFormation</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtrainget_clf_stack_statusstack_name"></a><a href="#easytdvtrainget_clf_stack_statusstack_name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.get_clf_stack_status(stack_name):</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--1"></a><a href="#présenatation--1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<pre><code class="hljs">a completer
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paramètres--1"></a><a href="#paramètres--1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><strong>stack_name</strong> :
+Le nom de la stack CloudFormation</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--str--stack_name"></a><a href="#returns--str--stack_name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : str : stack_name</h4>
+<ul>
+<li>Le statut en cours de la stack <strong>&lt;stack_name&gt;</strong></li>
+<li>Génère une exception en cas d'échec à l'appel &lt;boto3.client.describe_stacks()&gt;</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtrainlunch_train_ec2invoke_mode01"></a><a href="#easytdvtrainlunch_train_ec2invoke_mode01" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.lunch_train_ec2(invoke_mode=[0,1]):</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--2"></a><a href="#présenatation--2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<pre><code class="hljs">a completer
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paramètres--2"></a><a href="#paramètres--2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><p><strong>invoke_mode</strong> : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</p>
+<pre><code class="hljs">  - 0: synchrone
+  - 1: asynchrone
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--str"></a><a href="#returns--str" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : str</h4>
+<ul>
+<li>L'id unique de l'instance d'entrainement si le lancement de l'ec2 est OK</li>
+<li>Execute la lambda de création d'instance d'entrainement et configure la VM</li>
+<li>Génère une exception en cas où la création de l'instance est KO</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtraininstall_requermentsinstance_id-invoke_mode01"></a><a href="#easytdvtraininstall_requermentsinstance_id-invoke_mode01" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.install_requerments(instance_id, invoke_mode=[0,1]):</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--3"></a><a href="#présenatation--3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<pre><code class="hljs">a completer
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paramètres--3"></a><a href="#paramètres--3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><p><strong>instance_id</strong> : l'id unique de la commande SSM lancée sur l'instance d'entrainement</p></li>
+<li><p><strong>invoke_mode</strong> : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</p>
+<pre><code class="hljs">  - 0: synchrone
+  - 1: asynchrone
+</code></pre></li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--str-1"></a><a href="#returns--str-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : str</h4>
+<ul>
+<li>L'id unique de l'instance d'entrainement si le lancement de l'ec2 est OK</li>
+<li>Installe les librairies necessaires pour l'entrainement du modèle</li>
+<li>Génère une exception en cas où la commande SSM est KO</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtrainlunch_train_scriptinstance_id-invoke_mode01"></a><a href="#easytdvtrainlunch_train_scriptinstance_id-invoke_mode01" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.lunch_train_script(instance_id, invoke_mode=[0,1]):</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--4"></a><a href="#présenatation--4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<pre><code class="hljs">Execute le script d'entrainement dans la machine d'id : &lt;instance_id&gt;
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="paramètres--4"></a><a href="#paramètres--4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><strong>instance_id</strong> : l'id unique de l'instance d'entrainement</li>
+<li><strong>invoke_mode</strong> : correspond aux modes d'invocations de la méthode, prend les valeurs suivantes :</li>
+</ul>
+<pre><code class="hljs">    - 0: synchrone
+    - 1: asynchrone
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="returns--str-2"></a><a href="#returns--str-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : str</h4>
+<ul>
+<li>Le status d'execution du script d'entrainement</li>
+<li>Génère une exception en cas où l'entrainement est KO</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="easytdvtraindelete_resourcesinstance_id"></a><a href="#easytdvtraindelete_resourcesinstance_id" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>easyTDV.Train.delete_resources(instance_id):</h3>
+<h4><a class="anchor" aria-hidden="true" id="présenatation--5"></a><a href="#présenatation--5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Présenatation :</h4>
+<ul>
+<li>Supprime la stack CloudFormation et resilier l'instance d'entrainement à la fin du process.</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="paramètres--5"></a><a href="#paramètres--5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Paramètres :</h4>
+<ul>
+<li><strong>instance_id</strong> : l'id unique de l'instance d'entrainement</li>
+</ul>
+<h4><a class="anchor" aria-hidden="true" id="returns--none"></a><a href="#returns--none" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Returns : None</h4>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/start"><span class="arrow-prev">← </span><span>Get Started</span></a><a class="docs-next button" href="/docs/deploy"><span>Deploy</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#présentation">Présentation</a></li><li><a href="#ressources">Ressources</a></li><li><a href="#fonctions">Fonctions</a><ul class="toc-headings"><li><a href="#easytdvtrainprepare_env">easyTDV.Train.prepare_env()</a></li><li><a href="#easytdvtraincreate_clf_stackprepare_env_response-invoke_mode01">easyTDV.Train.create_clf_stack(prepare_env_response, invoke_mode=[0,1])</a></li><li><a href="#easytdvtrainget_clf_stack_statusstack_name">easyTDV.Train.get_clf_stack_status(stack_name):</a></li><li><a href="#easytdvtrainlunch_train_ec2invoke_mode01">easyTDV.Train.lunch_train_ec2(invoke_mode=[0,1]):</a></li><li><a href="#easytdvtraininstall_requermentsinstance_id-invoke_mode01">easyTDV.Train.install_requerments(instance_id, invoke_mode=[0,1]):</a></li><li><a href="#easytdvtrainlunch_train_scriptinstance_id-invoke_mode01">easyTDV.Train.lunch_train_script(instance_id, invoke_mode=[0,1]):</a></li><li><a href="#easytdvtraindelete_resourcesinstance_id">easyTDV.Train.delete_resources(instance_id):</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
+	| Lounas HADJ ALI</section></footer></div></body></html>

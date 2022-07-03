@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Presentation · easyTDV</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="**Date**: Jul 02, 2022 **Version**: 1.2.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Presentation · easyTDV"/><meta property="og:type" content="website"/><meta property="og:url" content="https://pypi.org/project/easyTDV//"/><meta property="og:description" content="**Date**: Jul 02, 2022 **Version**: 1.2.0"/><meta property="og:image" content="https://pypi.org/project/easyTDV/img/logo1.png"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo1.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-136434169-1"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'UA-136434169-1');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo2.png" alt="easyTDV"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/presentation" target="_self">Docs</a></li><li class=""><a href="https://pypi.org/project/easyTDV/" target="_self">PyPI</a></li><li class=""><a href="https://github.com/hadjali417/PA" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Docs</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/presentation">Presentation</a></li><li class="navListItem"><a class="navItem" href="/docs/start">Get Started</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Reference</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Class</h4><ul><li class="navListItem"><a class="navItem" href="/docs/train">Train</a></li><li class="navListItem"><a class="navItem" href="/docs/deploy">Deploy</a></li><li class="navListItem"><a class="navItem" href="/docs/vizualisation">Visualization</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Presentation</h1></header><article><div><span><p><strong>Date</strong>: Jul 02, 2022 <strong>Version</strong>: 1.2.0</p>
+<h2><a class="anchor" aria-hidden="true" id="contexte"></a><a href="#contexte" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contexte</h2>
+<ul>
+<li><p>Ce site a pour but de présenter et de documenter le travail réalisé dans le cadre du projet annuel de <strong>5ème</strong> année IABD à l'<strong>ESGI</strong>.</p></li>
+<li><p>Cette année nous avons choisi de créer un <strong>Framework python</strong> pour faciliter l'utilisation des services Cloud <strong>AWS</strong> dans le domaine de data science pour l’entraînement et le déploiement des modèles de machine learning de manière plus simple et rapide et dans le but d'exploiter les données résultantes des modèles déployés pour ajouter une valeur supplémentaire aux informations de chaque boîte ou entreprise.</p></li>
+<li><p>L'utilisation permanante de machines <strong>virtuelles puissantes</strong> est souvant nécessaire dans les grands projets utilisant de l'intelligence artificielle, ce qui  nous pousse donc vers l’utilisation du Cloud car ce dernier nous permet de configurer toute la partie architecture d’un projet informatique de bout en bout sans avoir à se soucier de la partie hardware.</p></li>
+<li><p>Toutes les personnes qui travaillent dans l'informatique et la data n'ont pas toujours les compétences nécessaires pour l’utilisation des services du cloud et il est souvent nécessaire pour eux de passer plus de temps durant les phases de déploiement de leurs projets et sont obligés de passer par des formations pour apprendre à utiliser les différents services que les cloud providers proposent.</p></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="objectifs"></a><a href="#objectifs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Objectifs</h2>
+<p><strong>Les principeaux objectifs du projet sont :</strong></p>
+<ul>
+<li>Etre accessible au grand public.</li>
+<li>Simple à l'utilisation.</li>
+<li>Faciliter l'utilisation des services AWS.</li>
+<li>Lancer des scripts d'entrainement de modèle ML directement sur le cloud.</li>
+<li>Déployer un modèle existant à travèrs une API qui sera requêter pour avoir des résultats de prédiction.</li>
+<li>Industrialiser des modèles ML.</li>
+<li>Réduire la charge de travail et optimisation du temps des tâches liées au cloud.</li>
+<li>Avoir un suivi des modèles dèployés avec des Dashboard sur AWS cloudWatch.</li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-next button" href="/docs/start"><span>Get Started</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#contexte">Contexte</a></li><li><a href="#objectifs">Objectifs</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
+	| Lounas HADJ ALI</section></footer></div></body></html>

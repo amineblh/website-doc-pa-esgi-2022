@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Get Started · easyTDV</title><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="generator" content="Docusaurus"/><meta name="description" content="**Pour une première utilisation de easyTDV veuillez vous documenter et suivre les étapes suivantes**"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Get Started · easyTDV"/><meta property="og:type" content="website"/><meta property="og:url" content="https://pypi.org/project/easyTDV//"/><meta property="og:description" content="**Pour une première utilisation de easyTDV veuillez vous documenter et suivre les étapes suivantes**"/><meta property="og:image" content="https://pypi.org/project/easyTDV/img/logo1.png"/><meta name="twitter:card" content="summary"/><link rel="shortcut icon" href="/img/logo1.png"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/foundation.min.css"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-136434169-1"></script><script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments); }
+              gtag('js', new Date());
+              gtag('config', 'UA-136434169-1');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo2.png" alt="easyTDV"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/presentation" target="_self">Docs</a></li><li class=""><a href="https://pypi.org/project/easyTDV/" target="_self">PyPI</a></li><li class=""><a href="https://github.com/hadjali417/PA" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Docs</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/presentation">Presentation</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/start">Get Started</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Reference</h3><ul class=""><div class="navGroup subNavGroup"><h4 class="navGroupSubcategoryTitle">Class</h4><ul><li class="navListItem"><a class="navItem" href="/docs/train">Train</a></li><li class="navListItem"><a class="navItem" href="/docs/deploy">Deploy</a></li><li class="navListItem"><a class="navItem" href="/docs/vizualisation">Visualization</a></li></ul></div></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Get Started</h1></header><article><div><span><p><strong>Pour une première utilisation de easyTDV veuillez vous documenter et suivre les étapes suivantes</strong></p>
+<h2><a class="anchor" aria-hidden="true" id="installation-à-partir-dun-terminal"></a><a href="#installation-à-partir-dun-terminal" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation à partir d'un terminal:</h2>
+<ul>
+<li>Pour charger la dernière version
+<pre><code class="hljs css language-express">pip <span class="hljs-keyword">install</span> easyTDV 
+</code></pre></li>
+<li>Pour installer une version spécifique
+<pre><code class="hljs css language-express"># Installez eayTDV <span class="hljs-keyword">version</span> 1.2.0 spécifiquement.
+pip install easyTDV==1.2.0 
+# pour une <span class="hljs-keyword">version</span> <span class="hljs-keyword">qui</span> <span class="hljs-keyword">n</span>'<span class="hljs-keyword">est</span> pas antérieur à <span class="hljs-keyword">la</span> <span class="hljs-keyword">version</span> 1.5.
+pip install easyTDV&gt;=1.5.0
+# pour une <span class="hljs-keyword">version</span> <span class="hljs-keyword">qui</span> <span class="hljs-keyword">n</span>'<span class="hljs-keyword">est</span> pas plus récente à <span class="hljs-keyword">la</span> <span class="hljs-keyword">version</span> 1.5.  
+pip install easyTDV&lt;=1.5.0
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="utilisation-des-identifiants-de-compte-aws"></a><a href="#utilisation-des-identifiants-de-compte-aws" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Utilisation des identifiants de compte AWS</h2>
+<ul>
+<li>Pour pouvoir exécuter un code permettant d'effectuer une certaine tâche, il vous faut d'abord être en possession des identifants (aws_access_key_id, aws_secret_access_key) d'un compte user AWS possédant les autorisations administrateurs.</li>
+<li>Dans le cas contraire vous devez créer un nouveau compte IAM sur votre console AWS à partir de votre compte AWS racine.
+<ul>
+<li><strong><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html</a></strong></li>
+</ul></li>
+<li>à la fin de la création de votre compte IAM, vous devez télécharger le fichier nommé <strong>&quot;new_user_credentials&quot;</strong> au format .csv.
+<ul>
+<li>Ce fichier sera appelé à l'exécution de chaque script que vous aller développer et il permeteras de fournir vos identifiants et établir la connexion à votre compte.</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="créaction-dun-bucket-s3-sur-aws"></a><a href="#créaction-dun-bucket-s3-sur-aws" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Créaction d'un bucket S3 sur AWS</h2>
+<ul>
+<li>Pour pouvoir sauvgarder le modèle IA, faut créer un bucket S3 sur AWS, avec les parametres suivants :
+<ul>
+<li><strong>région</strong> : USA Ouest (Californie du Nord) us-west-1.</li>
+<li>Le reste des régions seront ajoutées prochainement.</li>
+<li>Le nom du bucket sera utilisé à l'exécution.</li>
+</ul></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="démarrage-rapide"></a><a href="#démarrage-rapide" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Démarrage rapide</h2>
+<ul>
+<li><p><strong>Exemple pour se connecter à un compte IAM</strong></p>
+<pre><code class="hljs css language-express">  <span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> UserAwsAuth <span class="hljs-keyword">as</span> Ath
+
+  credential_file_path = <span class="hljs-string">"C:/Users/IAM/new_user_credentials.csv"</span>
+  auth_object = Ath.UserAwsAuth(credential_file_path)
+  auth_object.describe()
+</code></pre>
+<ul>
+<li>l'objet <strong>auth_object</strong> sera utilisé comme paramètre d'entré pour toutes les fonctions des classes <strong>Train</strong> et <strong>Deploy</strong></li>
+</ul></li>
+<li><p><strong>Exemple pour exécuter un script d'entrainement sur une EC2 et déployer le modèle résultant sur une API</strong></p>
+<pre><code class="hljs css language-express"><span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> UserAwsAuth <span class="hljs-keyword">as</span> Ath
+<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Train <span class="hljs-keyword">as</span> T
+<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Deploy <span class="hljs-keyword">as</span> D
+<span class="hljs-keyword">from</span> easyTDV <span class="hljs-keyword">import</span> Vizualisation <span class="hljs-keyword">as</span> V
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">prepro_fn</span><span class="hljs-params">(input_model)</span>:</span>
+    <span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+    age = float(input_model[<span class="hljs-string">"age"</span>])
+    sex = float(input_model[<span class="hljs-string">"sex"</span>])
+    <span class="hljs-keyword">return</span> np.array([age, sex]).reshape(<span class="hljs-number">-1</span>, <span class="hljs-number">2</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">"__main__"</span>:
+    bucket = <span class="hljs-string">"test-pa-esgi-02072022"</span>
+    device_size = <span class="hljs-string">"2"</span>
+    instance_type = <span class="hljs-string">"t2.medium"</span>
+    model_s3_key = <span class="hljs-string">"domaine=model/modelPKL"</span>
+
+    local_rep = <span class="hljs-string">"."</span>
+    train_script_local_path = <span class="hljs-string">f"<span class="hljs-subst">{local_rep}</span>/trainscript.py"</span>
+    requirements_local_path = <span class="hljs-string">f"<span class="hljs-subst">{local_rep}</span>/requirements.txt"</span>
+
+    credential_file_path = <span class="hljs-string">r"C:\Users\IAM\new_user_credentials.csv"</span>
+    auth_object = Ath.UserAwsAuth(credential_file_path)
+    auth_object.describe()
+
+     <span class="hljs-comment"># Partie entrainement</span>
+
+    print(<span class="hljs-string">"===============================&gt;[Train]&lt;==============================="</span>)
+    train_object = T.Train(bucket, auth_object, train_script_local_path,
+                        requirements_local_path, instance_type, device_size)
+
+    prep_env_response = train_object.prepare_env()
+
+    create_stack_status = train_object.create_clf_stack(prep_env_response)
+
+    instance_id = train_object.lunch_train_ec2()
+
+    install_req_status = train_object.install_requerments(instance_id)
+
+    <span class="hljs-keyword">if</span> install_req_status[<span class="hljs-string">"status"</span>]==<span class="hljs-string">"Success"</span>:
+        train_status = train_object.lunch_train_script(instance_id)
+        <span class="hljs-keyword">if</span> train_status[<span class="hljs-string">"status"</span>] == <span class="hljs-string">"Success"</span>:
+            print(<span class="hljs-string">"\n========&gt;train finished!"</span>)
+
+    train_object.delete_resources(instance_id)
+
+    <span class="hljs-comment"># Partie Deploiement</span>
+
+    print(<span class="hljs-string">"===============================&gt;[Deployment]&lt;==============================="</span>)
+
+    workdir = <span class="hljs-string">"."</span>
+
+    DeployObject = D.Deploy(bucket, model_s3_key, prepro_fn, auth_object,workdir)
+
+    print(<span class="hljs-string">"[Deployment] prepare_env..."</span>)
+    deployment_prepare_env = DeployObject.prepare_deployment()
+
+    print(<span class="hljs-string">"[Deployment] deploy..."</span>)
+    api_response = DeployObject.deploy(deployment_prepare_env)
+
+    print(api_response)
+
+    api_name = api_response[<span class="hljs-string">"api_name"</span>]
+
+    print(<span class="hljs-string">"===============================&gt;[Visualization]&lt;==============================="</span>)
+    VizObject = V.Vizualisation(bucket, auth_object, api_name)
+
+    vizualisation_prepare_env = VizObject.prepare_env()
+
+    dashboard_name = VizObject.vizualise(vizualisation_prepare_env)
+
+    print(dashboard_name)
+
+
+
+
+</code></pre></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="documentation-boto3"></a><a href="#documentation-boto3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation boto3</h2>
+<ul>
+<li>AWS boto3 est le kit AWS SDK pour Python (Boto3) pour créer, configurer et gérer des services AWS, tels qu'Amazon Elastic Compute Cloud (Amazon EC2) et Amazon Simple Storage Service (Amazon S3). Le SDK fournit une API orientée objet ainsi qu'un accès de bas niveau aux services AWS.</li>
+<li>La documentation du package <strong>boto3</strong> détaillée est disponible sur le lien suivant : <strong><a href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html">https://boto3.amazonaws.com/v1/documentation/api/latest/index.html</a></strong></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="documentation-easytdv"></a><a href="#documentation-easytdv" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Documentation easyTDV</h2>
+<p>[WORK IN PROGRESS]</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/presentation"><span class="arrow-prev">← </span><span>Presentation</span></a><a class="docs-next button" href="/docs/train"><span>Train</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#installation-à-partir-dun-terminal">Installation à partir d'un terminal:</a></li><li><a href="#utilisation-des-identifiants-de-compte-aws">Utilisation des identifiants de compte AWS</a></li><li><a href="#créaction-dun-bucket-s3-sur-aws">Créaction d'un bucket S3 sur AWS</a></li><li><a href="#démarrage-rapide">Démarrage rapide</a></li><li><a href="#documentation-boto3">Documentation boto3</a></li><li><a href="#documentation-easytdv">Documentation easyTDV</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/logo2.png" alt="easyTDV" width="200" height="100"/></a><div><h5>Docs</h5><a href="/docs/en/presentation">Presentation</a><a href="/docs/en/start">Get Started</a></div><div><h5>More</h5><a href="https://pypi.org/project/easyTDV/">Python</a><a href="https://github.com/hadjali417/PA">GitHub</a><a class="github-button" href="https://github.com/hadjali417/PA" data-icon="octicon-star" data-count-href="/micnic/simples/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Start this project on GitHub">Star</a></div><div><h5>Contact</h5><a href="mailto:abaleh@myges.fr">abaleh@myges.fr</a><a href="mailto:lhadjali@myges.fr">lhadjali@myges.fr</a><a href="mailto:lseddiki2@myges.fr">lseddiki2@myges.fr</a></div></section><section class="copyright">Copyright © 2021 - 2022 Amine BALEH | Laziz SEDDIKI
+	| Lounas HADJ ALI</section></footer></div></body></html>
